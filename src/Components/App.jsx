@@ -5,29 +5,32 @@ import './App.css'
 import ContactLIst from './ContactList/ContactLIst';
 
 function App() {
-  const [Contacts, setcontacts] = useState(0)
-  
-  const contacts =[
-    {
-    id:1,
-    "name":"shijin",
-    "number":"8848217507"
-    },
-    {
-      id:2,
-      "name":"haseeb",
-      "number":"807"
-      },
-      {
-        id:3,
-        "name":"ajin",
-        "number":"7025"
-        }
-]
+  const [contacts, setcontacts] = useState([]);
+  const addcontactHandler=(contact)=>{
+    setcontacts([...contacts,contact] )
+  }
+
+//   const contacts =[
+//     {
+//     id:1,
+//     "name":"shijin",
+//     "number":"8848217507"
+//     },
+//     {
+//       id:2,
+//       "name":"haseeb",
+//       "number":"807"
+//       },
+//       {
+//         id:3,
+//         "name":"ajin",
+//         "number":"7025"
+//         }
+// ]
   return (
     <div className='maindiv'>
       <Header/>
-    <AddContact contactHandler={contactHandler}/>
+    <AddContact addcontactHandler={addcontactHandler}/>
     <ContactLIst  contacts ={contacts}/>
     </div>
   )
