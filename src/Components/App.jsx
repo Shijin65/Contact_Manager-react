@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect} from 'react'
 import Header from './Header/Header'
 import AddContact from './AddContact/AddContact';
 import './App.css'
@@ -9,25 +9,18 @@ function App() {
   const addcontactHandler=(contact)=>{
     setcontacts([...contacts,contact] )
   }
+  const KEY="shijincht65"
 
-//   const contacts =[
-//     {
-//     id:1,
-//     "name":"shijin",
-//     "number":"8848217507"
-//     },
-//     {
-//       id:2,
-//       "name":"haseeb",
-//       "number":"807"
-//       },
-//       {
-//         id:3,
-//         "name":"ajin",
-//         "number":"7025"
-//         }
-// ]
-  return (
+  useEffect(()=>{
+    const takenitem = JSON.parse(localStorage.getItem(KEY));
+    if (takenitem) {setcontacts(takenitem);}
+    },[])
+
+
+useEffect(()=>{
+localStorage.setItem(KEY,JSON.stringify(contacts));
+},[contacts])
+  return ( 
     <div className='maindiv'>
       <Header/>
     <AddContact addcontactHandler={addcontactHandler}/>
