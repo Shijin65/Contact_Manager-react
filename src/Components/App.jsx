@@ -13,8 +13,10 @@ function App() {
 
   useEffect(()=>{
     const takenitem = JSON.parse(localStorage.getItem(KEY));
-    if (takenitem) {setcontacts(takenitem);}
-    },[])
+    if (takenitem) setcontacts (takenitem)
+    //  console.log(takenitem)
+    
+    },[App])
 
 
 useEffect(()=>{
