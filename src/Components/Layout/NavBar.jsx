@@ -1,12 +1,11 @@
 import React from 'react'
 
-function Header() {
+function NavBar() {
   return (
     <div>
-        <h1>CONTACT MANAGER</h1>
         
     </div>
   )
 }
 
-export default Header;
+export default NavBar
