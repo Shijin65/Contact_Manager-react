@@ -1,9 +1,12 @@
 import React from 'react'
 import NavBar from './NavBar'
+import Login from '../../pages/Login'
 
 function Layout() {
   return (
-    <div><NavBar/></div>
+    <div><NavBar />
+        
+    </div>
   )
 }
 

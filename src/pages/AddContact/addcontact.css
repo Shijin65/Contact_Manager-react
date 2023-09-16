@@ -1,8 +1,8 @@
 .formcontainer{
     background-color: white;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     width: 60vw;
-   justify-content: center;
+   /* justify-content: center; */
     padding-bottom: 20px;}
 .form{
     color: black;
