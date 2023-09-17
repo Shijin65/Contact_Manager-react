@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 
 function Regiester() {
-
+    const [state ,setstate]=useState(false)
     const [userData, setuserData] = useState({
         username: "",
         email: "",
@@ -11,18 +11,22 @@ function Regiester() {
     })
 
     const handleData = (event) => {
-        console.log(event.target)
+        // console.log(event.target)
         const { name , value } = event.target;
-
+        setstate(false)
         setuserData({ ...userData, [name] : value })
 
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        console.log(userData.password)
         if (userData.password === userData.confirmpassword) {
             setuserData({username:"",email:"",password:"",confirmpassword:""})
+            
             alert("the data submitted succesfully")
+
+        }else{
+            setstate(true)
         }
       console.log(event.target)
     }
@@ -37,10 +41,10 @@ function Regiester() {
                     class="form-control" 
                     id="username" 
                     name='username'
-                    
                     placeholder="Enter email"
                     value={userData.username}
-                    onChange={handleData} />
+                    onChange={handleData} 
+                    required/>
                 </div>
 
 
@@ -53,7 +57,8 @@ function Regiester() {
                     aria-describedby="emailHelp" 
                     placeholder="Enter email"
                         value={userData.email}
-                        onChange={handleData} />
+                        onChange={handleData}
+                        required />
                 </div>
 
 
@@ -66,26 +71,25 @@ function Regiester() {
                     placeholder="Password" 
                     autocomplete="off"
                         value={userData.password}
-                        onChange={handleData} />
+                        onChange={handleData} 
+                        required/>
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group ">
                     <label for="CPassword" class="form-label mt-4"> Confirm Password</label>
                     <input type="password" 
-                    class="form-control" 
+                    class = "form-control"
                     id="confirmpassword" 
                     name='confirmpassword'
                     placeholder="confirm Password" 
                     autocomplete="off"
                     value={userData.confirmpassword}
-                    onChange={handleData} />
+                    onChange={handleData} 
+                    required/>
+                    {state ? <div class="text-danger"> The password not match. Try again?</div>:""}
                 </div>
-                <div class="form-group has-danger">
-                    <label class="form-label mt-4" for="inputInvalid">Invalid input</label>
-                    <input type="text" value="wrong value" class="form-control is-invalid" id="inputInvalid"/>
-                    <div class="invalid-feedback">Sorry, that username's taken. Try another?</div>
-                </div>
+                
 
                 <p class="mt-2">Already Have a account?..<Link to='/login'>login</Link></p>
                 <button type="submit" class="btn btn-outline-success mt-4 ">Create</button>

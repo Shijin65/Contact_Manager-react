@@ -1,24 +1,27 @@
 import React , { useState }from 'react'
 import { Link } from 'react-router-dom'
+import Authcontext from '../context/Authcontext'
 
 
 function Login() {
 
-    const [userdata,setuserdata] = useState({
+
+  const{ loginUser }= usescontext(Authcontext)
+    const [userData,setuserdata] = useState({
         email:"",
         password:""
 })
 
 const handleData =(event)=>{
     const {name,value} = event.target;
-    setuserdata({...userdata , [name] :value }) 
+    setuserdata({...userData , [name] :value }) 
 }
 
 
 const handleSubmit=(event)=>{
     event.preventDefault();
     setuserdata({email:"",password:""})
-
+    loginUser(userData)
 }
 
 
@@ -36,7 +39,7 @@ const handleSubmit=(event)=>{
       aria-describedby="emailHelp" 
       placeholder="Enter email" 
       required 
-      value={userdata.email}
+      value={userData.email}
       onChange={handleData}
       />
     </div>
@@ -51,7 +54,7 @@ const handleSubmit=(event)=>{
       placeholder="Password" 
       autoComplete="off" 
       required 
-      value={userdata.password}
+      value={userData.password}
       onChange={handleData}/>
     </div>
     <p class="mt-2">Don't have an account? <Link to='/register'>Register</Link></p>
