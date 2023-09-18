@@ -19,22 +19,22 @@ function App() {
 // },[contacts])
 
   return ( 
-    
-    <div><Layout/>
-    <div className='maindiv'>
-      <Authcontextprovider><Switch>
+    <Authcontextprovider>
+    <Layout/>
+       <Switch>
         <Route path='/home' Component={Home} />
         <Route path='/login' Component={Login} />
         <Route path='/register' Component={Register}/>
-      </Switch></Authcontextprovider>
-    </div>
-    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-black text-white-50">
-    <div class="container text-center">
-      <small>Copyright &copy; Contact Manager App</small>
-    </div>
-  </footer></div>
-  
+      </Switch>
+    
+    </Authcontextprovider>
   )
 }
 
 export default App
+
+  //   <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-black text-white-50">
+  //   <div class="container text-center">
+  //     <small>Copyright &copy; Contact Manager App</small>
+  //   </div>
+  // </footer>

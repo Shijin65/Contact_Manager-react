@@ -1,36 +1,54 @@
-import {Children, createContext, useState} from 'react';
+import { createContext, useState } from 'react';
 import axios from 'axios';
 
-const Authcontext = createContext()
-export const Authcontextprovider = ({children})=>{
-    const [user ,setUser] =useState(null);
-    
-//login user
-const loginUser = async()=>{
+const AuthContext = createContext();
+
+export const Authcontextprovider = ({ children }) => {
+
+    const [user ,setUser]=useState(null);
+     
+  // Define loginUser function that takes userData as an argument
+  const loginUser = async(userData) => {
+
+        console.log(userData)
+
+        // try {
+        //     const res = await fetch(`http://localhost:8000/api/user/login`,{
+        //         method:"POST",
+        //         headers:{"content-type":"application/json",
+        //     },
+        //     body : JSON.stringify(userData),
+        //     })
+        //     // const userres =await res.json();
+        //     console.log(res)
+        // } catch (error) {
+        //     console.log(error)
+        // }
 
     try {
-
-        axios.get(`http://localhost:5000/api/user/login`).then((respoonce)={
-            console
-        })
-
-    //     const res = await fetch(`http://localhost:5000/api/user/login`,
-    //     {   method:"POST",
-    //         headers:{"content-Type":"application/json"},
-    //         body : JSON.stringify({...userData})
-    // })
-    //     const user=await res.json();
-    //     console.log(user)
+      axios.post('http://localhost:8001/api/user/login',userData, { withCredentials: true,
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     } catch (error) {
-        console.log( error)
+      console.log(error);
     }
-}
-
-    
 
 
 
-    return<Authcontextprovider value={{loginUser}}>{children}</Authcontextprovider>
-}
+  };
+  // Provide the loginUser function in the context value
 
-export default Authcontext;
+  return (
+    <AuthContext.Provider value={{loginUser}}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthContext;
