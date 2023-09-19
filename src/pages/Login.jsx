@@ -19,13 +19,13 @@ const handleData =(event)=>{
   
 const handleSubmit=(event)=>{
     event.preventDefault();
-    setuserdata({email:"",password:""})
+    // setuserdata({email:"",password:""})
     loginUser(userData)
 }
 
 
   return (
-  <div className='w-50 align-self-center'><form onSubmit={handleSubmit}>
+  <div className=''><form onSubmit={handleSubmit}>
      <div >
 
     <h2 className='mt-5 text-center'>LOGIN USER</h2>
