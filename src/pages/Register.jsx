@@ -1,7 +1,9 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import { Link } from 'react-router-dom'
-
+import AuthContext from '../context/Authcontext'
 function Regiester() {
+
+    const{ RegisterUser }= useContext(AuthContext)
     const [state ,setstate]=useState(false)
     const [userData, setuserData] = useState({
         username: "",
@@ -19,8 +21,12 @@ function Regiester() {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(userData.password)
+        // console.log(userData.password)
         if (userData.password === userData.confirmpassword) {
+           delete userData.confirmpassword;
+            // console.log(userData)
+
+            RegisterUser(userData)
             setuserData({username:"",email:"",password:"",confirmpassword:""})
             
             alert("the data submitted succesfully")
@@ -28,17 +34,16 @@ function Regiester() {
         }else{
             setstate(true)
         }
-      console.log(event.target)
     }
 
     return (
-        <div class='w-50  align-self-center'><div>
-            <h2 class='mt-5 text-center'>Register Here</h2>
+        <div className='w-50  align-self-center'><div>
+            <h2 className='mt-5 text-center'>Register Here</h2>
             <form onSubmit={handleSubmit}>
-                <div class="form-group ">
-                    <label for="Username" class="col-sm-2 form-label mt-4 ">Username</label>
+                <div className="form-group ">
+                    <label htmlFor="Username" className="col-sm-2 form-label mt-4 ">Username</label>
                     <input type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="username" 
                     name='username'
                     placeholder="Enter email"
@@ -48,10 +53,10 @@ function Regiester() {
                 </div>
 
 
-                <div class="form-group ">
-                    <label for="Email" class="col-sm-2 form-label mt-4 ">Email address</label>
+                <div className="form-group ">
+                    <label htmlFor="Email" className="col-sm-2 form-label mt-4 ">Email address</label>
                     <input type="email" 
-                    class="form-control" 
+                    className="form-control" 
                     id="email" 
                     name="email"
                     aria-describedby="emailHelp" 
@@ -62,10 +67,10 @@ function Regiester() {
                 </div>
 
 
-                <div class="form-group">
-                    <label for="Password" class="form-label mt-4">Password</label>
+                <div className="form-group">
+                    <label htmlFor="Password" className="form-label mt-4">Password</label>
                     <input type="password" 
-                    class="form-control" 
+                    className="form-control" 
                     id="Password" 
                     name='password'
                     placeholder="Password" 
@@ -76,10 +81,10 @@ function Regiester() {
                 </div>
 
 
-                <div class="form-group ">
-                    <label for="CPassword" class="form-label mt-4"> Confirm Password</label>
+                <div className="form-group ">
+                    <label htmlFor="CPassword" className="form-label mt-4"> Confirm Password</label>
                     <input type="password" 
-                    class = "form-control"
+                    className = "form-control"
                     id="confirmpassword" 
                     name='confirmpassword'
                     placeholder="confirm Password" 
@@ -87,13 +92,13 @@ function Regiester() {
                     value={userData.confirmpassword}
                     onChange={handleData} 
                     required/>
-                    {state ? <div class="text-danger"> The password not match. Try again?</div>:""}
+                    {state ? <div className="text-danger"> The password not match. Try again?</div>:""}
                 </div>
                 
 
-                <p class="mt-2">Already Have a account?..<Link to='/login'>login</Link></p>
-                <button type="submit" class="btn btn-outline-success mt-4 ">Create</button>
-                <button type="button" class="btn btn-outline-danger mt-4 ms-2" onClick={() => { }}>Clear</button>
+                <p className="mt-2">Already Have a account?..<Link to='/login'>login</Link></p>
+                <button type="submit" className="btn btn-outline-success mt-4 ">Create</button>
+                <button type="button" className="btn btn-outline-danger mt-4 ms-2" onClick={() => { }}>Clear</button>
             </form> </div>
 
         </div >

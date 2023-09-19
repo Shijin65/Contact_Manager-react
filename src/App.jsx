@@ -21,12 +21,13 @@ function App() {
   return ( 
     <Authcontextprovider>
     <Layout/>
+    <div className='maindiv' >
        <Switch>
         <Route path='/home' Component={Home} />
         <Route path='/login' Component={Login} />
         <Route path='/register' Component={Register}/>
       </Switch>
-    
+    </div>
     </Authcontextprovider>
   )
 }

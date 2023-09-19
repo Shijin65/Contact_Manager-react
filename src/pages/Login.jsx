@@ -19,8 +19,9 @@ const handleData =(event)=>{
   
 const handleSubmit=(event)=>{
     event.preventDefault();
+     loginUser(userData)
     // setuserdata({email:"",password:""})
-    loginUser(userData)
+   
 }
 
 
@@ -28,7 +29,7 @@ const handleSubmit=(event)=>{
   <div className=''><form onSubmit={handleSubmit}>
      <div >
 
-    <h2 className='mt-5 text-center'>LOGIN USER</h2>
+    <h2 className='text-center'>LOGIN USER</h2>
     <div className="form-group">
       <label htmlFor="Email" className="col-sm-2 form-label mt-4">Email address</label>
       <input type="email" 
