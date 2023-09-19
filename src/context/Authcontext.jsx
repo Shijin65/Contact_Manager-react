@@ -1,11 +1,13 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
 
 export const Authcontextprovider = ({ children }) => {
 
     const [user ,setUser]=useState(null);
-     
+     useEffect(()=>{
+      setUser(localStorage.getItem("auth"))
+     },[])
   // Define loginUser function that takes userData as an argument
   //LOGIN USER ..........
 
@@ -21,12 +23,15 @@ export const Authcontextprovider = ({ children }) => {
             body : JSON.stringify(userData),
             })
             const userres =await res.json();
-            console.log(userres)
+              console.log(userres)
+            
+            
 
-            if (!userres.error) {
-              localStorage.setItem("auth", userres)
-            }else{
+            if (userres.title === "BAD REQUEST") {
               console.log(userres.error)
+            }else{
+              setUser(userres);
+              localStorage.setItem("auth", userres)
             }
         } catch (error) {
             console.log(error)
@@ -47,6 +52,8 @@ try {
             })
             const userres =await res.json();
             console.log(userres)
+
+            
 } catch (error) {
   console.log(error)
 }
@@ -55,7 +62,7 @@ try {
   }
 
   return (
-    <AuthContext.Provider value={{loginUser,RegisterUser}}>
+    <AuthContext.Provider value={{loginUser,RegisterUser , user ,setUser }}>
       {children}
     </AuthContext.Provider>
   );
