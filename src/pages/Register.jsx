@@ -1,8 +1,13 @@
 import React,{useState,useContext} from 'react'
-import { Link } from 'react-router-dom'
+import { Link,Navigate } from 'react-router-dom'
 import AuthContext from '../context/Authcontext'
+import ToastContext from '../context/Toastcontext'
+
+
+
 function Regiester() {
 
+    const { toast }=  useContext(ToastContext)
     const{ RegisterUser }= useContext(AuthContext)
     const [state ,setstate]=useState(false)
     const [userData, setuserData] = useState({
@@ -19,19 +24,21 @@ function Regiester() {
         setuserData({ ...userData, [name] : value })
 
     }
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         // console.log(userData.password)
         if (userData.password === userData.confirmpassword) {
            delete userData.confirmpassword;
             // console.log(userData)
-
+            if()
             RegisterUser(userData)
             setuserData({username:"",email:"",password:"",confirmpassword:""})
-            
-            alert("the data submitted succesfully")
+            toast.success("registration Successfull")
+            // alert("the data submitted succesfully")
 
         }else{
+            toast.error('password not match')
             setstate(true)
         }
     }

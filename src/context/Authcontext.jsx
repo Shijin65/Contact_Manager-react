@@ -1,9 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState,useContext } from 'react';
+import ToastContext from './Toastcontext';
 
 const AuthContext = createContext();
 
 export const Authcontextprovider = ({ children }) => {
-
+    const { toast }=  useContext(ToastContext)
     const [user ,setUser]=useState(null);
      useEffect(()=>{
       setUser(localStorage.getItem("auth"))
@@ -23,16 +24,16 @@ export const Authcontextprovider = ({ children }) => {
             body : JSON.stringify(userData),
             })
             const userres =await res.json();
-              console.log(userres)
-            
-            
 
-            if (userres.title === "BAD REQUEST") {
-              console.log(userres.error)
+            if (!userres.error) {
+                  setUser(userres);
+                  localStorage.setItem("auth", userres)
+                  toast.success("login success full")
+
             }else{
-              setUser(userres);
-              localStorage.setItem("auth", userres)
+                  toast.error(userres.error)
             }
+
         } catch (error) {
             console.log(error)
         }
@@ -52,10 +53,12 @@ try {
             })
             const userres =await res.json();
             console.log(userres)
-
+            toast.error();
             
 } catch (error) {
-  console.log(error)
+ 
+  console.log(error);
+   
 }
 
 

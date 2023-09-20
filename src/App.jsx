@@ -7,6 +7,9 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import { Authcontextprovider } from './context/Authcontext'
+import { ToastContextProvider } from './context/Toastcontext'
+
+
 function App() {
 
   // const [contacts, setcontacts] = useState([]);
@@ -18,8 +21,10 @@ function App() {
 // localStorage.setItem(KEY,JSON.stringify(contacts));
 // },[contacts])
 
-  return ( 
+  return (
+  <ToastContextProvider> 
     <Authcontextprovider>
+      
     <Layout/>
     <div className='maindiv' >
        <Switch>
@@ -28,7 +33,9 @@ function App() {
         <Route path='/register' Component={Register}/>
       </Switch>
     </div>
+    
     </Authcontextprovider>
+    </ToastContextProvider>
   )
 }
 
