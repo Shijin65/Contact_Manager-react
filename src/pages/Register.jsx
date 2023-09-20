@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react'
-import { Link,Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AuthContext from '../context/Authcontext'
 import ToastContext from '../context/Toastcontext'
 
@@ -8,7 +8,7 @@ import ToastContext from '../context/Toastcontext'
 function Regiester() {
 
     const { toast }=  useContext(ToastContext)
-    const{ RegisterUser }= useContext(AuthContext)
+    const{ RegisterUser, error }= useContext(AuthContext)
     const [state ,setstate]=useState(false)
     const [userData, setuserData] = useState({
         username: "",
@@ -18,7 +18,7 @@ function Regiester() {
     })
 
     const handleData = (event) => {
-        // console.log(event.target)
+
         const { name , value } = event.target;
         setstate(false)
         setuserData({ ...userData, [name] : value })
@@ -27,20 +27,21 @@ function Regiester() {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        // console.log(userData.password)
         if (userData.password === userData.confirmpassword) {
            delete userData.confirmpassword;
-            // console.log(userData)
-            if()
             RegisterUser(userData)
-            setuserData({username:"",email:"",password:"",confirmpassword:""})
-            toast.success("registration Successfull")
-            // alert("the data submitted succesfully")
+                if (!error) {
+                    setuserData({username:"",email:"",password:"",confirmpassword:""}); 
+                }else{  
+                    setuserData(...userData,{confirmpassword:""})
+                }
 
         }else{
             toast.error('password not match')
             setstate(true)
         }
+
+         
     }
 
     return (
@@ -81,7 +82,7 @@ function Regiester() {
                     id="Password" 
                     name='password'
                     placeholder="Password" 
-                    autocomplete="off"
+                    autoComplete="off"
                         value={userData.password}
                         onChange={handleData} 
                         required/>
@@ -95,7 +96,7 @@ function Regiester() {
                     id="confirmpassword" 
                     name='confirmpassword'
                     placeholder="confirm Password" 
-                    autocomplete="off"
+                    autoComplete="off"
                     value={userData.confirmpassword}
                     onChange={handleData} 
                     required/>

@@ -5,7 +5,7 @@ import AuthContext from "../../context/Authcontext";
 
 function NavBar(props) {
   const { user ,setUser } = useContext(AuthContext);
-
+console.log(user)
   return (
     <div>
       <nav
@@ -31,6 +31,8 @@ function NavBar(props) {
           <div className="collapse navbar-collapse" id="navbarColor02">
             <ul className="navbar-nav ms-auto">
               {user ? (
+                <>
+                {/* <li>{user.user}</li> */}
                 <li className="nav-item">
                   <button type="button" className="btn btn-danger" onClick={()=>{
                     setUser("")
@@ -39,7 +41,7 @@ function NavBar(props) {
                   }}>
                     Logout
                   </button>
-                </li>
+                </li></>
               ) : (
                 <>
                   <li className="nav-item">
