@@ -8,18 +8,13 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import { Authcontextprovider } from './context/Authcontext'
 import { ToastContextProvider } from './context/Toastcontext'
+import Entrance from './pages/Entrance'
+import CreateContact from './pages/CreateContact'
+import ShowContact from './pages/ShowContact'
 
 
 function App() {
 
-  // const [contacts, setcontacts] = useState([]);
-  // const addcontactHandler=(contact)=>{
-  //   setcontacts([...contacts,contact] )
-  // }
-  // const KEY="shijincht65"
-// useEffect(()=>{
-// localStorage.setItem(KEY,JSON.stringify(contacts));
-// },[contacts])
 
   return (
   <ToastContextProvider> 
@@ -28,9 +23,13 @@ function App() {
     <Layout/>
     <div className='maindiv' >
        <Switch>
+       <Route path='/' Component={Entrance} />
         <Route path='/home' Component={Home} />
         <Route path='/login' Component={Login} />
         <Route path='/register' Component={Register}/>
+        <Route path='/create' Component={CreateContact}/>
+        <Route path='/contacts' Component={ShowContact}/>
+
       </Switch>
     </div>
     

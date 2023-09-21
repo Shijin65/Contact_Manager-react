@@ -37,7 +37,8 @@ export const Authcontextprovider = ({ children }) => {
       console.log(userres.error)
       toast.error("please login")
       localStorage.clear();
-      Navigate("/login",{ replace : true })
+      Navigate("/",{ replace : true })
+      setUser(null)
     }
       
       

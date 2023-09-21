@@ -8,7 +8,7 @@ import ToastContext from '../context/Toastcontext'
 function Regiester() {
 
     const { toast }=  useContext(ToastContext)
-    const{ RegisterUser, error }= useContext(AuthContext)
+    const{ RegisterUser }= useContext(AuthContext)
     const [state ,setstate]=useState(false)
     const [userData, setuserData] = useState({
         username: "",

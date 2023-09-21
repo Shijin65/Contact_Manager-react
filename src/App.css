@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+  max-height: auto;
 }
 @media (max-width: 767px) {
   .w-50 {
