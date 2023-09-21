@@ -38,6 +38,7 @@ const handleSubmit=(event)=>{
       name='email'
       aria-describedby="emailHelp" 
       placeholder="Enter email" 
+      autoComplete='on'
       required 
       value={userData.email}
       onChange={handleData}
@@ -52,7 +53,7 @@ const handleSubmit=(event)=>{
       id="exampleInputPassword1" 
       name='password'
       placeholder="Password" 
-      autoComplete="off" 
+      autoComplete="on" 
       required 
       value={userData.password}
       onChange={handleData}/>

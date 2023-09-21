@@ -7,27 +7,42 @@ const AuthContext = createContext();
 export const Authcontextprovider = ({ children }) => {
     const Navigate = useNavigate();
     const { toast }=  useContext(ToastContext)
+    const[token ,setToken] =useState(null)
     const [user ,setUser]=useState(null);
     const [error , setError]=useState(null)
 
      useEffect(()=>{
-      setUser(localStorage.getItem("auth"))
+      setToken(localStorage.getItem("auth"))
+      setUser( JSON.parse(localStorage.getItem("user")))
+      currentUser();
      },[])
   // Define loginUser function that takes userData as an argument
   
   //CURRENT USER
-  const currentUser =async()=>{
+  const currentUser = async()=>{
+
     try {
       const res = await fetch(`http://localhost:8001/api/user/current`,{
         method:"GET",
         headers:{ Authorization : `Bearer ${localStorage.getItem("auth")}`},
     })
-    const userres =await res.json();
+    const userres = await res.json();
+    // console.log(userres)
     if (!userres.error) {
-      setUser(userres)
-      Navigate("/home",{replace : true})
+    Navigate("/home",{ replace : true })
+    console.log(userres)
+    toast.success(`welcome back MR. ${userres.username}`)
+    
+    }else{
+      console.log(userres.error)
+      toast.error("please login")
+      localStorage.clear();
+      Navigate("/login",{ replace : true })
     }
+      
+      
     } catch (error) {
+      toast.error(error)
       console.log(error)
     }
   }
@@ -49,12 +64,13 @@ export const Authcontextprovider = ({ children }) => {
             const userres =await res.json();
 
             if (!userres.error) {
-                  setUser(userres);
+             
                   localStorage.setItem("auth", userres.accesstoken);
-                  
-                  console.log(userres.user)
+                  localStorage.setItem("user", JSON.stringify(userres.user));
+                  console.log(JSON.stringify(userres.user))
+                  setUser(userres.user)
                   toast.success(`welcome ${userres.user.username}`);
-                  
+                  Navigate("/home",{ replace : true })
             }else{
                   setError(userres.error);
                   toast.error(userres.error);
@@ -82,7 +98,7 @@ try {
                 if(!userres.error){
               toast.success("user registered successfully");
               Navigate("/login",{ replace : true })
-             
+                
             }else{
               toast.error(userres.error)
               console.log(userres.error)

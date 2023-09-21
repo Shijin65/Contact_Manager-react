@@ -28,17 +28,15 @@ function Regiester() {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (userData.password === userData.confirmpassword) {
-           delete userData.confirmpassword;
-            RegisterUser(userData)
-                if (!error) {
-                    setuserData({username:"",email:"",password:"",confirmpassword:""}); 
-                }else{  
-                    setuserData(...userData,{confirmpassword:""})
-                }
+        //     setuserData({confirmpassword:""})
+        //    delete userData.confirmpassword;
 
+            RegisterUser({...userData,confirmpassword:""})
         }else{
+            setuserData({confirmpassword:""})
             toast.error('password not match')
             setstate(true)
+
         }
 
          
@@ -54,7 +52,8 @@ function Regiester() {
                     className="form-control" 
                     id="username" 
                     name='username'
-                    placeholder="Enter email"
+                    autoComplete="username"
+                    placeholder="Enter username..."
                     value={userData.username}
                     onChange={handleData} 
                     required/>
@@ -62,12 +61,13 @@ function Regiester() {
 
 
                 <div className="form-group ">
-                    <label htmlFor="Email" className="col-sm-2 form-label mt-4 ">Email address</label>
+                    <label htmlFor="email" className="col-sm-2 form-label mt-4 ">Email address</label>
                     <input type="email" 
                     className="form-control" 
                     id="email" 
                     name="email"
-                    aria-describedby="emailHelp" 
+                    aria-describedby="emailHelp"
+                    autoComplete="email" 
                     placeholder="Enter email"
                         value={userData.email}
                         onChange={handleData}
@@ -90,13 +90,13 @@ function Regiester() {
 
 
                 <div className="form-group ">
-                    <label htmlFor="CPassword" className="form-label mt-4"> Confirm Password</label>
+                    <label htmlFor="confirmPassword" className="form-label mt-4"> Confirm Password</label>
                     <input type="password" 
                     className = "form-control"
                     id="confirmpassword" 
                     name='confirmpassword'
                     placeholder="confirm Password" 
-                    autoComplete="off"
+                    autComplete="off"
                     value={userData.confirmpassword}
                     onChange={handleData} 
                     required/>

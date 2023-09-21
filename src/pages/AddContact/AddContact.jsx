@@ -20,6 +20,7 @@ function AddContact() {
                   class="form-control" 
                   id="Email" 
                   aria-describedby="emailHelp" 
+                  autoComplete='on'
                   placeholder="Enter email"
                   />
           </div>

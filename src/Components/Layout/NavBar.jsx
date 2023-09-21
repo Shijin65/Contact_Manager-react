@@ -1,11 +1,17 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/Authcontext";
+import ToastContext from "../../context/Toastcontext";
 
 function NavBar(props) {
-  const { user ,setUser } = useContext(AuthContext);
-console.log(user)
+
+  const Navigate = useNavigate();
+  const { user, setUser } = useContext(AuthContext);
+  const { toast } = useContext(ToastContext)
+
+
+
   return (
     <div>
       <nav
@@ -32,16 +38,18 @@ console.log(user)
             <ul className="navbar-nav ms-auto">
               {user ? (
                 <>
-                {/* <li>{user.user}</li> */}
-                <li className="nav-item">
-                  <button type="button" className="btn btn-danger" onClick={()=>{
-                    setUser("")
-                    localStorage.clear();
-                    console.log("log outed from the account")
-                  }}>
-                    Logout
-                  </button>
-                </li></>
+                  <li className="nav-item me-3 h5">{user.username}</li>
+                  <li className="nav-item">
+                    <button type="button" className="btn btn-danger" onClick={() => {
+                      setUser("")
+                      localStorage.clear();
+                      console.log("log outed from the account");
+                      toast.success("logged out successfully");
+                      Navigate("/login",{ replace : true });
+                    }}>
+                      Logout
+                    </button>
+                  </li></>
               ) : (
                 <>
                   <li className="nav-item">
