@@ -15,8 +15,7 @@ function NavBar(props) {
   return (
     <div className="">
       <nav
-        className="navbar navbar-expand-md bg-dark mg-auto"
-        data-bs-theme="dark"
+        className="navbar navbar-expand-md  mg-auto " data-bs-theme="dark"
       >
         <div className="container-fluid ">
           <Link to="/home" className="navbar-brand">

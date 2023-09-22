@@ -2,8 +2,8 @@ import react,{ useContext, useEffect, useState } from 'react';
 import {useNavigate } from 'react-router-dom'
 import AuthContext from '../context/Authcontext';
 import ToastContext from '../context/Toastcontext';
-
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 function CreateContact() {
   const { toast } = useContext(ToastContext)
   const [ContactDetails, setContactDetails] = useState({
@@ -92,9 +92,24 @@ const handleSubmit = async(event) => {
                   autoComplete="on" 
                   onChange={handlechange}/>
           </div>
-          
+
+          <Row>
+
+          <Col xs={12} md={6} className='d-flex align-items-center justify-content-center mt-3' >
           <button type="submit" className="btn btn-outline-success mt-3">ADD CONTACT</button>
-          <button type="button" className="btn btn-outline-danger mt-3 ms-2" onClick={() => {}}>Clear</button>
+          </Col>
+          
+          <Col xs={12} md={6} className='d-flex align-items-center justify-content-center '>
+       <button type="button" className="btn btn-outline-danger mt-3 ms-2" onClick={() => {setContactDetails({})}}>Clear</button>
+          </Col>
+
+          </Row>
+          
+          <Row className=''>
+            <Col xs={12}  className='d-flex align-items-center justify-content-center mt-5'>
+             <button type="button" className="btn btn-outline-info mt-3 ms-2 " onClick={() => { Navigate("/contacts",{replace:true})}}>ALL CONTACT</button>
+            </Col>
+          </Row>
         </div>
       </form></>
   )

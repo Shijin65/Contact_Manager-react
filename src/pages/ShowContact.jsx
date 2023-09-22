@@ -1,13 +1,18 @@
-import React, { useContext,useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ToastContext from '../context/Toastcontext';
+import ShowModal from '../Components/Layout/ShowModal';
 // import {useNavigate } from 'react-router-dom'
 
 function ShowContact() {
+
+    const [modalShow, setModalShow] = useState(false);
+    const [modalData ,setModalData]= useState({})
+
     const { toast } = useContext(ToastContext)
-    const [Contacts ,setContacts]=useState([]);
+    const [Contacts, setContacts] = useState([]);
     // const Navigate =useNavigate()
+
     useEffect(() => {
-        fetchData()
 
         async function fetchData() {
             try {
@@ -18,34 +23,41 @@ function ShowContact() {
                 const userres = await res.json();
                 console.log(userres)
                 setContacts(userres)
-                if(userres == []){
+                if (userres == []) {
                     toast.error("No Contacts Created")
-                    Navigate("/home",{replace :true})
+                    Navigate("/home", { replace: true })
                 }
             } catch (error) {
-
+                console.log(error)
             }
+
         }
-    })
+        fetchData()
+    }, [])
 
     return (
 
-        <div className="container">
+        <div className="container pt-5 postion-absolute">
             <h1>Contact List</h1>
-            <div className="row">
+            <div className="row " style={{marginTop:"450px"}}>
 
-            {Contacts.map((contact)=>{
-                <div className="col-md-4">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">{contact.name}</h5>
-                            <p className="card-text">{}</p>
+                { Contacts && Contacts.map((contact) => (
+                    <div className=" col-sm-6 col-md-4 mt-3" key={contact._id}  onClick={() => 
+                       { setModalShow(true)
+                        setModalData({})
+                        setModalData(contact)}
+                    }>
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">{contact.name}</h5>
+                                <p className="card-text">Phone: {contact.phone}</p>   
+                            </div>
+                           
                         </div>
                     </div>
-                </div>
-            })}
-                
+                ))}
 
+            <ShowModal show={modalShow} modalData={modalData} onHide={() => setModalShow(false)} />
 
                 {/* <div className="col-md-4">
                     <div className="card">

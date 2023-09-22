@@ -1,11 +1,12 @@
 import React from 'react'
 import NavBar from './NavBar'
-import Login from '../../pages/Login'
 
-function Layout() {
+
+function Layout({children}) {
   return (
-    <div><NavBar />
-        
+    <div className='d-flex flex-column'>
+   <NavBar />
+       <div className="container">{children}</div> 
     </div>
   )
 }

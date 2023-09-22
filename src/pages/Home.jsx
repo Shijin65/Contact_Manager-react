@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react"
 import AuthContext from "../context/Authcontext"
 import { useNavigate } from "react-router-dom";
 
+
 function Home() {
   const { user } = useContext(AuthContext);
   const Navigate = useNavigate()
@@ -11,7 +12,7 @@ function Home() {
 
   })
   return (
-    <div className="d-flex justify-content-around align-items-center flex-wrap bg-black ms-3" style={{ marginTop: "50px" }}>
+    <div className="d-flex justify-content-around  flex-wrap postion ms-3" style={{ marginTop: "50px" }}>
 
       <div className="row">
         <div className="col-md-6 mb-3 mt-2">

@@ -11,6 +11,7 @@ import { ToastContextProvider } from './context/Toastcontext'
 import Entrance from './pages/Entrance'
 import CreateContact from './pages/CreateContact'
 import ShowContact from './pages/ShowContact'
+import NavBar from './Components/Layout/NavBar'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       
     <Layout/>
     <div className='maindiv' >
+      
        <Switch>
        <Route path='/' Component={Entrance} />
         <Route path='/home' Component={Home} />
@@ -32,7 +34,7 @@ function App() {
 
       </Switch>
     </div>
-    
+
     </Authcontextprovider>
     </ToastContextProvider>
   )
