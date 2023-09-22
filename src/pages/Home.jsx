@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const { user } = useContext(AuthContext);
   const Navigate = useNavigate()
-  console.log(user)
+
   useEffect(() => {
     !user && Navigate("/login", { replace: true })
 
   })
   return (
-    <div className="d-flex justify-content-around align-items-center flex-wrap bg-black" style={{ marginTop: "250px" }}>
+    <div className="d-flex justify-content-around align-items-center flex-wrap bg-black ms-3" style={{ marginTop: "50px" }}>
 
       <div className="row">
         <div className="col-md-6 mb-3 mt-2">

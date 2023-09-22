@@ -33,10 +33,11 @@ const handleSubmit = async(event) => {
             body : JSON.stringify(ContactDetails),
             })
             const userres =await res.json();
+
           if(!userres.error){
               toast.success("the contact created successfully")
               setContactDetails({ 
-              name: "",
+            name: "",
               phone: "",
               email: "",})
           }else{
