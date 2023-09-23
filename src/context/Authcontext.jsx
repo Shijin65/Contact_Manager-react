@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState,useContext } from 'react';
 import ToastContext from './Toastcontext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -10,6 +10,8 @@ export const Authcontextprovider = ({ children }) => {
     const[token ,setToken] =useState(null)
     const [user ,setUser]=useState(null);
     const [error , setError]=useState(null)
+    const location = useLocation();
+
 
      useEffect(()=>{
       setToken(localStorage.getItem("auth"))
@@ -29,9 +31,15 @@ export const Authcontextprovider = ({ children }) => {
     const userres = await res.json();
     // console.log(userres)
     if (!userres.error) {
-    Navigate("/home",{ replace : true })
+
+      if (location.pathname=="/login" || location.pathname =="/register") {
+        Navigate("/home",{ replace : true })
+            toast.success(`welcome back MR. ${userres.username}`)
+      }else{
+        Navigate(location.pathname? location.pathname:"/")
+      }
+    
     console.log(userres)
-    toast.success(`welcome back MR. ${userres.username}`)
     
     }else{
       console.log(userres.error)

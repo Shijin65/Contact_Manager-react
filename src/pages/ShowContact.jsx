@@ -3,6 +3,7 @@ import ToastContext from '../context/Toastcontext';
 import ShowModal from '../Components/Layout/ShowModal';
 import {Link, useNavigate } from 'react-router-dom'
 
+
 function ShowContact() {
 
     const [modalShow, setModalShow] = useState(false);
@@ -45,11 +46,11 @@ function ShowContact() {
             <div className=' mt-5'>
                 <h5>contact list is empty</h5>
                 <button type='button' className='btn btn-primary mt-2' onClick={()=>{ Navigate("/create", { replace: true })}}>create contact</button>
-              
+                
                 
             </div>
             
-            : ""}
+            : <div><p>Total Number of Contacts : {Contacts.length}</p></div>}
                 { Contacts && Contacts.map((contact) => (
                     <div className=" col-sm-6 col-md-4 mt-3" key={contact._id}  onClick={() => 
                        { setModalShow(true)

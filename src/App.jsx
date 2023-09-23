@@ -20,7 +20,7 @@ function App() {
     <Authcontextprovider>
       
     <Layout/>
-    <div className='maindiv' >
+    <div className='maindiv'  >
       
        <Switch>
        <Route path='/' Component={Entrance} />
