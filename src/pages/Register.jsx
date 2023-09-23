@@ -104,9 +104,9 @@ function Regiester() {
                 </div>
                 
 
-                <p className="mt-2">Already Have a account?..<Link to='/login'>login</Link></p>
-                <button type="submit" className="btn btn-outline-success mt-4 ">Create</button>
-                <button type="button" className="btn btn-outline-danger mt-4 ms-2" onClick={() => { }}>Clear</button>
+                <p className="mt-2 bg-black">Already Have a account?..<Link to='/login'>login</Link></p>
+                <button type="submit" className="btn btn-success mt-4 ">Create</button>
+                {/* <button type="button" className="btn btn-danger mt-4 ms-2" onClick={() => { setuserData("") }}>Clear</button> */}
             </form> </div>
 
         </div >

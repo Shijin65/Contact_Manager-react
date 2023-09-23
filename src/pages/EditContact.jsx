@@ -127,7 +127,7 @@ function EditContact() {
             md={6}
             className="d-flex align-items-start justify-content-start mt-3 "
           >
-            <button type="submit" className="btn btn-outline-success mt-3 ">
+            <button type="submit" className="btn btn-success mt-3 ">
               SAVE CHANGES
             </button>
           </Col>

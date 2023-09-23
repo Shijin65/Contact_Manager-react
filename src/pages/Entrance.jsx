@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import "./Entrance.css"
 function Entrance() {
 
   const Navigate = useNavigate();
   return (
-    <div className='d-flex flex-column justify-content-center mt-5'>
+    <div className='d-flex flex-column justify-content-center mt-5  ' >
       
       <div style={{marginTop:"60px"}}><h2>welcome to the master contact making application</h2></div>
   

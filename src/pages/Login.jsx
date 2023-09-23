@@ -58,9 +58,9 @@ const handleSubmit=(event)=>{
       value={userData.password}
       onChange={handleData}/>
     </div>
-    <p className="mt-2">Don't have an account? <Link to='/register'>Register</Link></p>
-    <button type="submit" className="btn btn-outline-success mt-3">Login</button>
-    <button type="button" className="btn btn-outline-danger mt-3 ms-2" onClick={() => {}}>Clear</button>
+    <p className="mt-2 bg-black">Don't have an account? <Link to='/register'>Register</Link></p>
+    <button type="submit" className="btn btn-success mt-3">Login</button>
+    <button type="button" className="btn btn-danger mt-3 ms-2" onClick={() => {setuserdata({})}}>Clear</button>
   </div>
   </form>
   </div>

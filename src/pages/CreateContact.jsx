@@ -95,20 +95,16 @@ const handleSubmit = async(event) => {
 
           <Row>
 
-          <Col xs={12} md={6} className='d-flex align-items-center justify-content-center mt-3' >
-          <button type="submit" className="btn btn-outline-success mt-3">ADD CONTACT</button>
+          <Col xs={12} md={4} className='d-flex align-items-center justify-content-center mt-3' >
+          <button type="submit" className="btn btn-success mt-3">ADD CONTACT</button>
           </Col>
           
-          <Col xs={12} md={6} className='d-flex align-items-center justify-content-center '>
-       <button type="button" className="btn btn-outline-danger mt-3 ms-2" onClick={() => {setContactDetails({})}}>Clear</button>
+          <Col xs={12} md={4} className='d-flex align-items-center justify-content-center '>
+       <button type="button" className="btn btn-danger mt-3 ms-2" onClick={() => {setContactDetails({})}}>Clear</button>
           </Col>
-
-          </Row>
-          
-          <Row className=''>
-            <Col xs={12}  className='d-flex align-items-center justify-content-center mt-5'>
-             <button type="button" className="btn btn-outline-info mt-3 ms-2 " onClick={() => { Navigate("/contacts",{replace:true})}}>ALL CONTACT</button>
-            </Col>
+              <Col xs={12} md={4} className='d-flex align-items-center justify-content-center mt-3'>
+                          <button type="button" className="btn btn-info mt-3 ms-2 " onClick={() => { Navigate("/contacts",{replace:true})}}>ALL CONTACT</button>
+                          </Col>
           </Row>
         </div>
       </form></>

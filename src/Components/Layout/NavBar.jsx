@@ -19,7 +19,7 @@ function NavBar(props) {
       >
         <div className="container-fluid ">
           <Link to="/home" className="navbar-brand">
-            Navbar
+            CONTACT MANAGER
           </Link>
 
           <button
