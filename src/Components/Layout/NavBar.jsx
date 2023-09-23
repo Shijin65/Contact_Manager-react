@@ -13,9 +13,9 @@ function NavBar(props) {
 
 
   return (
-    <div className="">
+    <div className="fixed-top mt-2">
       <nav
-        className="navbar navbar-expand-md  mg-auto  bg-black h-20 " data-bs-theme="dark"
+        className="navbar navbar-expand-md  mg-auto  bg-black h-20   " data-bs-theme="dark"
       >
         <div className="container-fluid ">
           <Link to="/home" className="navbar-brand">
