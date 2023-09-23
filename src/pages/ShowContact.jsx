@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ToastContext from '../context/Toastcontext';
 import ShowModal from '../Components/Layout/ShowModal';
-// import {useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
 function ShowContact() {
 
@@ -10,7 +10,7 @@ function ShowContact() {
 
     const { toast } = useContext(ToastContext)
     const [Contacts, setContacts] = useState([]);
-    // const Navigate =useNavigate()
+    const Navigate =useNavigate()
 
     useEffect(() => {
 
@@ -21,9 +21,9 @@ function ShowContact() {
                     headers: { "Authorization": `Bearer ${localStorage.getItem("auth")}` },
                 })
                 const userres = await res.json();
-                console.log(userres)
+                console.log(userres.length)
                 setContacts(userres)
-                if (userres == []) {
+                if (userres.length === 0) {
                     toast.error("No Contacts Created")
                     Navigate("/home", { replace: true })
                 }
@@ -37,9 +37,9 @@ function ShowContact() {
 
     return (
 
-        <div className="container pt-5 postion-absolute">
+        <div className="container pt-5">
             <h1>Contact List</h1>
-            <div className="row " style={{marginTop:"450px"}}>
+            <div className="row " >
 
                 { Contacts && Contacts.map((contact) => (
                     <div className=" col-sm-6 col-md-4 mt-3" key={contact._id}  onClick={() => 

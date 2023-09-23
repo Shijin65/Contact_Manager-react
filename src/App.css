@@ -7,16 +7,17 @@
 }
 
 .maindiv{
-  margin-top: -150px;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  max-height: auto;
+  /* justify-content: center; */
+  min-height: 100vh;
+  /* max-height: auto; */
 }
 @media (max-width: 767px) {
   .w-50 {
     width: 100%;
     max-width: none; /* Remove the maximum width constraint */
+
   }
 }

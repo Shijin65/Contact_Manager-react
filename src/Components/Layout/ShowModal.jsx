@@ -1,16 +1,35 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 
 function ShowModal(props) {
+
+    const deletehandler = async(id) =>{
+      if (window.confirm("are you sure you want to delete this contact?")) {
+
+
+        console.log(id)
+        const res = await fetch(`http://localhost:8001/api/contact/${id}`,
+        {
+          method:"DELETE",
+          headers:{"content-type":"application/json",
+          Authorization : `Bearer ${localStorage.getItem("auth")}`
+          
+      }
+      })
+      const userres =await res.json();
+      }
+
+      props.onHide()
+    }
     console.log(props.modalData)
   return (
 
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" className='mt-5' style={{marginTop:"250px"}}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onClick={props.onHide}>
         <Modal.Title id="contained-modal-title-vcenter"  className='mt-3'>
          Contact Details
         </Modal.Title>
@@ -45,7 +64,15 @@ function ShowModal(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <div className='d-flex gap-3 bg-danger p-2 justify-content-center shadow-sm ' style={{ borderRadius:"8px" ,cursor:"pointer" }} onClick={()=>{
+          deletehandler(props.modalData._id);
+          
+          
+          }}>
+          <p className='mt-1 font-weight-bold'>Move to trash</p>
+      <i className="fa-solid fa-trash-can fa-bounce fa-lg mt-3"></i>
+      </div>
+        
       </Modal.Footer>
     </Modal>
   );

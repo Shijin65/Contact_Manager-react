@@ -49,7 +49,7 @@ const handleSubmit = async(event) => {
 
     <> 
       <form onSubmit={handleSubmit}>
-        <div className='w-50 position-absolute top-50 start-50 translate-middle'>
+        <div className=' w-50 position-absolute top-50 start-50 translate-middle'>
           <h2 className=' text-center'>Add Contact</h2>
 
           <div className="form-group">

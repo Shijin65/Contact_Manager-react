@@ -12,7 +12,7 @@ function Home() {
 
   })
   return (
-    <div className="d-flex justify-content-around  flex-wrap postion ms-3" style={{ marginTop: "50px" }}>
+    <div className="d-flex justify-content-around  flex-wrap ms-3 mt-5">
 
       <div className="row">
         <div className="col-md-6 mb-3 mt-2">
