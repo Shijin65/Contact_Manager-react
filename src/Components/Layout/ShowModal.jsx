@@ -11,8 +11,8 @@ function ShowModal(props) {
   const deletehandler = async (id) => {
     if (window.confirm("are you sure you want to delete this contact?")) {
 
+//DELETE CONTACT//---------------------------------------------------
 
-      console.log(id)
       const res = await fetch(`http://localhost:8001/api/contact/${id}`,
         {
           method: "DELETE",
@@ -23,13 +23,14 @@ function ShowModal(props) {
           }
         })
       const userres = await res.json();
-      console.log(userres)
+      console.log(userres.newcont)
+      props.setContacts(userres.newcont)
       toast.error(`contact deleted "${userres.DELETED_CONTACT}"`)
     }
 
     props.onHide()
   }
-  console.log(props.modalData)
+  console.log(props.modaldata)
   return (
 
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" className='mt-5' style={{ marginTop: "250px" }}>
@@ -45,7 +46,7 @@ function ShowModal(props) {
             <Col xs={6} md={2}>
               name :
             </Col><Col xs={12} md={10}>
-              <h3 className='text-uppercase'>{props.modalData.name}</h3>
+              <h3 className='text-uppercase'>{props.modaldata.name}</h3>
             </Col>
           </Row>
           <Row className="mt-3" >
@@ -54,7 +55,7 @@ function ShowModal(props) {
               phone :
             </Col>
             <Col xs={12} md={10}>
-              <h5>{props.modalData.phone}</h5>
+              <h5>{props.modaldata.phone}</h5>
             </Col>
           </Row>
           <Row>
@@ -62,7 +63,7 @@ function ShowModal(props) {
               Email :
             </Col>
             <Col xs={12} md={10}>
-              <h5>{props.modalData.email}</h5>
+              <h5>{props.modaldata.email}</h5>
             </Col>
           </Row>
         </Container>
@@ -71,11 +72,11 @@ function ShowModal(props) {
 
         <div className='d-flex gap-3'>
           <div>
-            <button type="button" className="btn btn-primary" onClick={()=>{ Navigate(`/editcontact/${props.modalData._id}`,{replace:true} ) }}>Edit</button>
+            <button type="button" className="btn btn-primary" onClick={()=>{ Navigate(`/editcontact/${props.modaldata._id}`,{replace:true} ) }}>Edit</button>
           </div>
           <div>
             <button className='btn btn-danger'
-              onClick={() => { deletehandler(props.modalData._id) }}>Move to trash</button>
+              onClick={() => { deletehandler(props.modaldata._id) }}>Move to trash</button>
           </div>
         </div>
       </Modal.Footer>

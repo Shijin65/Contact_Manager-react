@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ToastContext from '../context/Toastcontext';
 import ShowModal from '../Components/Layout/ShowModal';
-import {useNavigate } from 'react-router-dom'
+import {Link, useNavigate } from 'react-router-dom'
 
 function ShowContact() {
 
     const [modalShow, setModalShow] = useState(false);
-    const [modalData ,setModalData]= useState({})
+    const [modaldata ,setModalData]= useState({})
 
     const { toast } = useContext(ToastContext)
     const [Contacts, setContacts] = useState([]);
@@ -40,7 +40,16 @@ function ShowContact() {
         <div className="container pt-5">
             <h1>Contact List</h1>
             <div className="row " >
+            {(Contacts.length===0)? 
 
+            <div className=' mt-5'>
+                <h5>contact list is empty</h5>
+                <button type='button' className='btn btn-primary mt-2' onClick={()=>{ Navigate("/create", { replace: true })}}>create contact</button>
+              
+                
+            </div>
+            
+            : ""}
                 { Contacts && Contacts.map((contact) => (
                     <div className=" col-sm-6 col-md-4 mt-3" key={contact._id}  onClick={() => 
                        { setModalShow(true)
@@ -57,7 +66,7 @@ function ShowContact() {
                     </div>
                 ))}
 
-            <ShowModal show={modalShow} modalData={modalData} onHide={() => setModalShow(false)} />
+            <ShowModal setContacts={setContacts}  show={modalShow} modaldata={modaldata} onHide={() => setModalShow(false)} />
 
                 {/* <div className="col-md-4">
                     <div className="card">

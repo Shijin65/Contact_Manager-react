@@ -1,5 +1,5 @@
 import react, { useContext, useEffect, useState } from "react";
-// import {useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 // import AuthContext from '../context/Authcontext';
 import ToastContext from "../context/Toastcontext";
 import Col from "react-bootstrap/Col";
@@ -12,7 +12,7 @@ function EditContact() {
     email: "",
   });
   //   const {user}=useContext(AuthContext);
-  // const Navigate =useNavigate()
+  const Navigate =useNavigate()
   const { id } = useParams();
 
   useEffect(() => {
@@ -62,6 +62,7 @@ function EditContact() {
         phone: "",
         email: "",
       });
+      Navigate(`/contacts`,{replace:true} )
     } else {
       toast.error(serverres.error);
     }

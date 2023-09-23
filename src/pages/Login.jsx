@@ -26,7 +26,7 @@ const handleSubmit=(event)=>{
 
 
   return (
-  <div className=''><form onSubmit={handleSubmit}>
+  <div className='w-50 align-self-center mt-5'><form onSubmit={handleSubmit}>
      <div >
 
     <h2 className='text-center'>LOGIN USER</h2>

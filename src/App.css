@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   /* justify-content: center;c */
-  min-height: 100vh;
+  min-height: 90vh;
   /* max-height: auto; */
 }
 @media (max-width: 767px) {
